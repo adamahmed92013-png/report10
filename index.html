@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قلعة التنانين MONSTER | النظام السيادي الملكي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-orange: #ff4500;
+            --primary-glow: rgba(255, 69, 0, 0.6);
+            --bg-dark: #020408;
+            --card-bg: #070b14;
+            --input-bg: #0d1424;
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 69, 0, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(204, 17, 0, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, #080e1d 0%, #020408 95%);
+            overflow-x: hidden;
+        }
+
+        .royal-navbar {
+            background: rgba(7, 11, 20, 0.95);
+            border-bottom: 2px solid var(--primary-orange);
+            box-shadow: 0 0 35px rgba(255, 69, 0, 0.45);
+            backdrop-filter: blur(15px);
+        }
+
+        .navbar-brand {
+            font-weight: 900;
+            font-size: 1.7rem;
+            color: #fff !important;
+            text-shadow: 0 0 20px var(--primary-orange);
+        }
+
+        .card-royal {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-orange);
+            border-radius: 32px;
+            box-shadow: 0 0 50px rgba(255, 69, 0, 0.3), inset 0 0 25px rgba(255, 69, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            border: 2px solid #1a2744;
+            color: #fff !important;
+            border-radius: 16px;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background-color: #111b33;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .btn-neon-royal {
+            background: linear-gradient(135deg, #ff4500 0%, #990000 100%);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 16px;
+            padding: 15px 25px;
+            box-shadow: 0 8px 30px rgba(255, 69, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-neon-royal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 69, 0, 0.8);
+            color: #fff;
+        }
+
+        .chat-container {
+            height: 380px;
+            overflow-y: auto;
+            background: rgba(3, 6, 13, 0.85);
+            border: 1px solid #1a2744;
+            border-radius: 20px;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .message-bubble {
+            padding: 14px 20px;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            max-width: 82%;
+            font-weight: 600;
+            line-height: 1.6;
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-msg {
+            background: linear-gradient(135deg, #16223d 0%, #0d1424 100%);
+            border: 1px solid #283a60;
+            color: #fff;
+            margin-right: auto;
+            border-top-left-radius: 4px;
+        }
+
+        .admin-msg {
+            background: linear-gradient(135deg, #ff4500 0%, #990000 100%);
+            color: #fff;
+            margin-left: auto;
+            border-top-right-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg) !important;
+            border: 2px solid var(--primary-orange) !important;
+            border-radius: 32px;
+        }
+
+        .admin-table {
+            color: #fff;
+            background: #04070e;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #1e293b;
+        }
+
+        .admin-table th {
+            background: linear-gradient(135deg, #131d35 0%, #0a1122 100%);
+            color: #ffb703;
+            font-weight: 800;
+            border-bottom: 2px solid var(--primary-orange);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .admin-table td {
+            padding: 14px;
+            vertical-align: middle;
+            border-bottom: 1px solid #1a2744;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .royal-title {
+            text-shadow: 0 0 12px rgba(255, 69, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark royal-navbar sticky-top">
+        <div class="container py-2">
+            <span class="navbar-brand">
+                <i class="fa-solid fa-dragon text-danger"></i> قلعة التنانين <span class="text-warning fs-5">MONSTER</span>
+            </span>
+            <button class="btn btn-outline-warning fw-bold px-4 rounded-pill shadow-sm" onclick="openAdminModal()">
+                <i class="fa-solid fa-shield-halved ms-1"></i> لوحة القائد آدم
+            </button>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-8">
+                <div class="card card-royal p-4 p-md-5">
+                    
+                    <div class="text-center mb-4">
+                        <i class="fa-solid fa-crown text-warning fa-3x mb-2 royal-title"></i>
+                        <h2 class="fw-black text-warning royal-title">بوابة المحادثة والدعم السيادي</h2>
+                        <p class="text-sub">النظام الملكي المتكامل لخدمة أعضاء قلعة التنانين</p>
+                    </div>
+
+                    <!-- قسم تسجيل الدخول بالاسم الحقيقي فقط -->
+                    <div id="authSection" class="mb-4">
+                        <div class="mb-3">
+                            <label class="form-label text-warning fw-bold">
+                                <i class="fa-solid fa-user-pen text-danger"></i> أدخل اسمك الحقيقي للدخول:
+                            </label>
+                            <input type="text" id="userNameInput" class="form-control" placeholder="مثال: آدم أحمد..." oninput="validateNameInput()">
+                        </div>
+
+                        <button class="btn btn-neon-royal w-100 py-3 mt-2" onclick="initiateChatSession()" id="startChatBtn" disabled>
+                            <i class="fa-solid fa-right-to-bracket ms-1"></i> دخول الشات الملكي
+                        </button>
+                        <div id="nameValidationMsg" class="text-danger small mt-2 fw-bold text-center"></div>
+                    </div>
+
+                    <!-- قسم الشات النشط -->
+                    <div id="chatActiveSection" class="d-none">
+                        <div class="d-flex justify-content-between align-items-center mb-3 bg-dark p-3 rounded-4 border border-secondary">
+                            <div>
+                                <span class="text-sub">العضو النشط: <strong id="displayName" class="text-warning"></strong></span><br>
+                                <span class="text-success small fw-bold">● متصل ذكي وخفي (Real-time)</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-outline-danger fw-bold px-3 rounded-pill" onclick="logoutChatSession()">تغيير الاسم / خروج</button>
+                            </div>
+                        </div>
+
+                        <div class="chat-container mb-4" id="mainChatBox"></div>
+
+                        <form onsubmit="submitUserMessage(event)">
+                            <div class="input-group">
+                                <input type="text" id="userChatMessage" class="form-control" placeholder="اكتب شكواك أو رسالتك للإدارة هنا..." required>
+                                <button type="submit" class="btn btn-neon-royal px-4">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة لوحة تحكم القائد آدم -->
+    <div class="modal fade" id="adminModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content p-4 text-light">
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-3">
+                    <h4 class="fw-bold text-warning m-0"><i class="fa-solid fa-shield-cat"></i> غرفة عمليات القائد آدم</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                
+                <div id="adminLoginBox">
+                    <p class="text-sub mb-3">أدخل الكود السري الملكي للوصول لجدول القيادة والتحكم:</p>
+                    <div class="mb-3">
+                        <input type="password" id="adminPasswordInput" class="form-control text-center fs-3" placeholder="••••••••">
+                    </div>
+                    <button class="btn btn-neon-royal w-100" onclick="verifyAdminAccess()">فك شفرة البوابة</button>
+                </div>
+
+                <div id="adminDashboardBox" class="d-none">
+                    <div class="alert alert-success bg-success bg-opacity-25 border-0 text-light fw-bold py-3 mb-4 text-center">
+                        <i class="fa-solid fa-circle-check text-success fa-lg ms-1"></i> أهلاً بك يا سيادة القائد آدم. الجدول أدناه يتيح لك رؤية شكاوى الأعضاء والرد عليها فوراً!
+                    </div>
+
+                    <div class="table-responsive mb-4" style="max-height: 450px; overflow-y: auto;">
+                        <table class="table admin-table m-0">
+                            <thead>
+                                <tr>
+                                    <th>اسم العضو</th>
+                                    <th>الشكوى / الرسالة</th>
+                                    <th>الحالة</th>
+                                    <th>كتابة وإرسال الرد الملكي</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <button class="btn btn-outline-warning w-100 rounded-pill py-2" onclick="loadAdminTableData()">
+                        <i class="fa-solid fa-rotate ms-1"></i> تحديث جدول الشكاوى
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2KL02SfIhEvcyoC2gemrD-mdDY_qX_ZDT3dMabVjm_TAhjbz8hwo2xDkLmYYwBV83/exec";
+
+        let currentUserName = "";
+        let autoRefreshInterval = null;
+        let lastCachedHTML = ""; // لحفظ آخر شكل للشات ومنع إعادة التحميل المزعج
+
+        function validateNameInput() {
+            const nameVal = document.getElementById('userNameInput').value.trim();
+            const msg = document.getElementById('nameValidationMsg');
+            const btn = document.getElementById('startChatBtn');
+
+            if (nameVal.length >= 2) {
+                msg.innerText = "✓ الاسم جاهز، يمكنك الدخول";
+                msg.className = "text-success small mt-2 fw-bold text-center";
+                btn.disabled = false;
+            } else {
+                msg.innerText = "⚠️ يرجى كتابة اسم حقيقي صحيح";
+                msg.className = "text-danger small mt-2 fw-bold text-center";
+                btn.disabled = true;
+            }
+        }
+
+        function initiateChatSession() {
+            const nameVal = document.getElementById('userNameInput').value.trim();
+            if (nameVal.length < 2) return;
+
+            currentUserName = nameVal;
+            lastCachedHTML = ""; // تصفير الكاش عند البدء
+            document.getElementById('displayName').innerText = currentUserName;
+            document.getElementById('authSection').classList.add('d-none');
+            document.getElementById('chatActiveSection').classList.remove('d-none');
+
+            const chatBox = document.getElementById('mainChatBox');
+            chatBox.innerHTML = `
+                <div class="message-bubble user-msg" id="welcome-msg">
+                    <div class="small text-warning mb-1"><i class="fa-solid fa-crown"></i> النظام الملكي:</div>
+                    أهلاً بك يا ${currentUserName} في نظام الدعم لقلعة التنانين. اكتب رسالتك أو شكواك وسيتم إرسالها للإدارة فوراً.
+                </div>
+            `;
+
+            backgroundSyncMessages();
+            if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+            autoRefreshInterval = setInterval(backgroundSyncMessages, 1000); // فحص خفي كل ثانية
+        }
+
+        function logoutChatSession() {
+            if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+            currentUserName = "";
+            lastCachedHTML = "";
+            document.getElementById('userNameInput').value = "";
+            document.getElementById('startChatBtn').disabled = true;
+            document.getElementById('nameValidationMsg').innerText = "";
+            document.getElementById('chatActiveSection').classList.add('d-none');
+            document.getElementById('authSection').classList.remove('d-none');
+            document.getElementById('mainChatBox').innerHTML = "";
+        }
+
+        async function backgroundSyncMessages() {
+            if (!currentUserName) return;
+            try {
+                let response = await fetch(GOOGLE_SCRIPT_URL + "?action=getChat&id=" + encodeURIComponent(currentUserName));
+                let data = await response.json();
+                const chatBox = document.getElementById('mainChatBox');
+                
+                let htmlContent = `
+                    <div class="message-bubble user-msg">
+                        <div class="small text-warning mb-1"><i class="fa-solid fa-crown"></i> النظام الملكي:</div>
+                        أهلاً بك يا ${currentUserName} في نظام الدعم لقلعة التنانين. اكتب رسالتك أو شكواك وسيتم إرسالها للإدارة فوراً.
+                    </div>
+                `;
+                
+                data.forEach(item => {
+                    htmlContent += `
+                        <div class="message-bubble user-msg">
+                            <div class="small text-warning mb-1"><i class="fa-solid fa-user"></i> ${currentUserName}:</div>
+                            ${item.message}
+                        </div>
+                    `;
+                    if (item.reply && item.reply.trim() !== "") {
+                        htmlContent += `
+                            <div class="message-bubble admin-msg">
+                                <div class="small text-light mb-1"><i class="fa-solid fa-shield-halved"></i> رد القائد آدم:</div>
+                                ${item.reply}
+                            </div>
+                        `;
+                    }
+                });
+                
+                // التحديث الخفي الذكي: لا يتم إعادة رسم الشاشة إلا لو حصل تغيير حقيقي في الرسائل أو الردود
+                if (htmlContent !== lastCachedHTML) {
+                    let isAtBottom = chatBox.scrollHeight - chatBox.scrollTop <= chatBox.clientHeight + 60;
+                    chatBox.innerHTML = htmlContent;
+                    lastCachedHTML = htmlContent; // تحديث الكاش
+                    
+                    if (isAtBottom) {
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    }
+                }
+            } catch (err) {
+                // صامت تماماً في الخلفية لتجنب أي إزعاج للمستخدم
+            }
+        }
+
+        async function submitUserMessage(e) {
+            e.preventDefault();
+            const inputField = document.getElementById('userChatMessage');
+            const messageText = inputField.value.trim();
+            const chatBox = document.getElementById('mainChatBox');
+
+            if (!messageText || !currentUserName) return;
+
+            // إظهار الرسالة محلياً فوراً وبشكل سلس جداً
+            const newMsgHTML = `
+                <div class="message-bubble user-msg">
+                    <div class="small text-warning mb-1"><i class="fa-solid fa-user"></i> ${currentUserName}:</div>
+                    ${messageText}
+                </div>
+            `;
+            chatBox.innerHTML += newMsgHTML;
+            lastCachedHTML = chatBox.innerHTML; // تحديث الكاش مباشرة لمنع الرفريش اللاحق من إلغائها
+            chatBox.scrollTop = chatBox.scrollHeight;
+            inputField.value = '';
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ action: "send", id: currentUserName, message: messageText })
+                });
+            } catch (err) {
+                console.log("خطأ في الإرسال");
+            }
+        }
+
+        let adminModalInstance;
+        function openAdminModal() {
+            if(!adminModalInstance) adminModalInstance = new bootstrap.Modal(document.getElementById('adminModal'));
+            document.getElementById('adminLoginBox').classList.remove('d-none');
+            document.getElementById('adminDashboardBox').classList.add('d-none');
+            document.getElementById('adminPasswordInput').value = '';
+            adminModalInstance.show();
+        }
+
+        function verifyAdminAccess() {
+            const pwd = document.getElementById('adminPasswordInput').value.trim();
+            if(pwd === '60156611') {
+                document.getElementById('adminLoginBox').classList.add('d-none');
+                document.getElementById('adminDashboardBox').classList.remove('d-none');
+                loadAdminTableData();
+            } else {
+                alert('الكود السري خطأ يا قائد!');
+            }
+        }
+
+        async function loadAdminTableData() {
+            const tbody = document.getElementById('adminTableBody');
+            tbody.innerHTML = `<tr><td colspan="4" class="text-warning py-4">جاري تحميل سجلات الإمبراطورية...</td></tr>`;
+            try {
+                let response = await fetch(GOOGLE_SCRIPT_URL + "?action=getAllAdmin");
+                let rows = await response.json();
+                
+                let html = "";
+                rows.forEach((row) => {
+                    let statusBadge = row.status === 'done' ? '<span class="badge bg-success">تم الرد</span>' : '<span class="badge bg-warning text-dark">معلق (pending)</span>';
+                    html += `
+                        <tr>
+                            <td class="fw-bold text-warning">${row.id}</td>
+                            <td style="text-align: right; direction: rtl;">${row.message}</td>
+                            <td>${statusBadge}</td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" id="reply_${row.rowIndex}" class="form-control text-light bg-dark" value="${row.reply || ''}" placeholder="اكتب الرد هنا...">
+                                    <button class="btn btn-neon-royal px-3" onclick="sendAdminReply(${row.rowIndex})">إرسال</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = html || `<tr><td colspan="4" class="text-muted py-4">لا توجد شكاوى مسجلة حتى الآن</td></tr>`;
+            } catch(e) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-danger py-4">فشل في الاتصال بالسيرفر</td></tr>`;
+            }
+        }
+
+        async function sendAdminReply(rowIndex) {
+            const replyText = document.getElementById(`reply_${rowIndex}`).value.trim();
+            if(!replyText) {
+                alert('اكتب رداً أولاً يا قائد!');
+                return;
+            }
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ action: "adminReply", rowIndex: rowIndex, reply: replyText })
+                });
+                alert('تم إرسال الرد وحفظه في السجِل بنجاح يا آدم!');
+                loadAdminTableData();
+            } catch(e) {
+                alert('حدث خطأ أثناء الإرسال');
+            }
+        }
+    </script>
+</body>
+</html>
